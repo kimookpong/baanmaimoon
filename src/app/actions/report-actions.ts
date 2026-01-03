@@ -176,7 +176,7 @@ export async function getRoomStatusForDate(dateStr: string) {
     // Logic: checkIn < nextDate AND checkOut > targetDate
     const bookings = await prisma.booking.findMany({
         where: {
-            status: { in: ['PENDING', 'CHECKED_IN'] },
+            status: { in: ['PENDING', 'CHECKED_IN', 'CHECKED_OUT', 'COMPLETED'] },
             checkIn: { lt: nextDate },
             checkOut: { gt: targetDate }
         },

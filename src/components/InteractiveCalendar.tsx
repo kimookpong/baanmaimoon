@@ -104,11 +104,18 @@ export default function InteractiveCalendar({ getAvailability }: InteractiveCale
                                                 color: 'white',
                                                 fontWeight: '500'
                                             }}>
-                                                {room.status === 'OCCUPIED' ? 'ไม่ว่าง' : 'ว่าง'}
+                                                {room.booking ? (
+                                                    room.booking?.status === 'PENDING' ? 'รอเช็คอิน' :
+                                                        room.booking?.status === 'CONFIRMED' ? 'จองแล้ว' :
+                                                            room.booking?.status === 'CHECKED_IN' ? 'เข้าพักแล้ว' :
+                                                                room.booking?.status === 'CHECKED_OUT' ? 'เช็คเอาท์แล้ว' :
+                                                                    room.booking?.status === 'CANCELLED' ? 'ยกเลิก' :
+                                                                        room.booking?.status
+                                                ) : 'ว่าง'}
                                             </span>
                                         </div>
 
-                                        {room.status === 'OCCUPIED' && room.booking && (
+                                        {room.booking && (
                                             <div style={{ textAlign: 'right', fontSize: '0.875rem' }}>
                                                 <div style={{ fontWeight: '600', color: '#991b1b' }}>{room.booking.guestName}</div>
                                                 <div style={{ fontSize: '0.75rem', color: '#b91c1c' }}>

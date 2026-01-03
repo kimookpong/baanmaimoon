@@ -8,7 +8,7 @@ export async function getAvailableRooms(checkIn: Date, checkOut: Date) {
     const bookedRoomIds = await prisma.bookingRoom.findMany({
         where: {
             booking: {
-                status: { in: ['PENDING', 'CHECKED_IN'] },
+                status: { in: ['PENDING', 'CHECKED_IN', 'CHECKED_OUT', 'COMPLETED'] },
                 OR: [
                     {
                         AND: [
