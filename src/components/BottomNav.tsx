@@ -73,7 +73,7 @@ export default function BottomNav() {
                     className={`nav-item ${pathname === item.href ? 'active' : ''}`}
                 >
                     {item.icon}
-                    <span>{item.label}</span>
+                    <span className='text-xs'>{item.label}</span>
                 </Link>
             ))}
         </nav>

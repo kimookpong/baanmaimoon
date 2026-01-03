@@ -4,11 +4,11 @@ import { useState } from 'react'
 import AvailabilityCalendar from '@/components/AvailabilityCalendar'
 import { getRoomStatusForDate } from '@/app/actions/report-actions'
 
-type DashboardCalendarClientProps = {
+type InteractiveCalendarProps = {
     getAvailability: (year: number, month: number) => Promise<{ date: string; available: number; total: number }[]>
 }
 
-export default function DashboardCalendarClient({ getAvailability }: DashboardCalendarClientProps) {
+export default function InteractiveCalendar({ getAvailability }: InteractiveCalendarProps) {
     const [selectedDate, setSelectedDate] = useState<string | null>(null)
     const [roomDetails, setRoomDetails] = useState<any[]>([])
     const [loadingDetails, setLoadingDetails] = useState(false)

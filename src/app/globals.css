@@ -116,7 +116,7 @@ textarea:focus {
   background: white;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 1.25rem;
+  padding: 0.5rem;
 }
 
 .card-elevated {
@@ -200,7 +200,7 @@ textarea:focus {
 }
 
 .page-container {
-  padding: 1rem;
+  padding: 0.5rem;
   padding-bottom: 100px;
   max-width: 640px;
   margin: 0 auto;
@@ -244,8 +244,8 @@ textarea:focus {
 .room-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
   background: white;
   border-radius: 0.75rem;
   border: 1px solid var(--gray-200);
