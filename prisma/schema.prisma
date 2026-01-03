@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Room {
+  id        String       @id @default(cuid())
+  number    String       @unique
+  name      String
+  price     Float
+  status    String       @default("AVAILABLE")
+  bookings  BookingRoom[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Guest {
+  id        String    @id @default(cuid())
+  name      String
+  phone     String?
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+}
+
+model Booking {
+  id         String        @id @default(cuid())
+  guest      Guest         @relation(fields: [guestId], references: [id])
+  guestId    String
+  checkIn    DateTime
+  checkOut   DateTime
+  totalPrice Float
+  discount   Float         @default(0)
+  status     String        @default("PENDING")
+  rooms      BookingRoom[]
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+model BookingRoom {
+  id        String  @id @default(cuid())
+  booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId String
+  room      Room    @relation(fields: [roomId], references: [id])
+  roomId    String
+
+  @@unique([bookingId, roomId])
+}
