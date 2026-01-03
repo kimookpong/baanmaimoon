@@ -5,6 +5,10 @@ import Providers from "@/components/Providers";
 export const metadata: Metadata = {
   title: "BanMaimoon - ระบบจัดการห้องพักรายวัน",
   description: "ระบบบริหารจัดการห้องพักรายวัน",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export const viewport: Viewport = {

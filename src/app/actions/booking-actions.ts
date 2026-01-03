@@ -233,7 +233,7 @@ export async function getMonthlyAvailability(year: number, month: number) {
     // Get all bookings that overlap with this month
     const bookings = await prisma.booking.findMany({
         where: {
-            status: { in: ['PENDING', 'CHECKED_IN'] },
+            status: { in: ['PENDING', 'CHECKED_IN', 'CHECKED_OUT'] },
             AND: [
                 { checkIn: { lte: endDate } },
                 { checkOut: { gt: startDate } },

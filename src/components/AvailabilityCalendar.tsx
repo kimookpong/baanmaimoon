@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 
 interface AvailabilityCalendarProps {
     getAvailability: (year: number, month: number) => Promise<{ date: string; available: number; total: number }[]>
+    onDateClick?: (date: string) => void
 }
 
 const thaiMonths = [
@@ -14,7 +15,7 @@ const thaiMonths = [
 
 const thaiDays = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส']
 
-export default function AvailabilityCalendar({ getAvailability }: AvailabilityCalendarProps) {
+export default function AvailabilityCalendar({ getAvailability, onDateClick }: AvailabilityCalendarProps) {
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth())
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
     const [availability, setAvailability] = useState<{ date: string; available: number; total: number }[]>([])
@@ -171,6 +172,7 @@ export default function AvailabilityCalendar({ getAvailability }: AvailabilityCa
                         return (
                             <div
                                 key={day.date}
+                                onClick={() => onDateClick?.(day.date)}
                                 style={{
                                     aspectRatio: '1',
                                     background: colors.bg,
@@ -181,6 +183,14 @@ export default function AvailabilityCalendar({ getAvailability }: AvailabilityCa
                                     justifyContent: 'center',
                                     border: isToday ? '2px solid var(--primary)' : 'none',
                                     position: 'relative',
+                                    cursor: onDateClick ? 'pointer' : 'default',
+                                    transition: 'transform 0.1s',
+                                }}
+                                onMouseOver={(e) => {
+                                    if (onDateClick) e.currentTarget.style.transform = 'scale(1.05)'
+                                }}
+                                onMouseOut={(e) => {
+                                    if (onDateClick) e.currentTarget.style.transform = 'scale(1)'
                                 }}
                             >
                                 <span style={{

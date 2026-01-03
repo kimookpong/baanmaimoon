@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import BottomNav from '@/components/BottomNav'
 import { getRoomStats } from '@/app/actions/room-actions'
 import { getTodayBookings, getMonthlyAvailability } from '@/app/actions/booking-actions'
-import AvailabilityCalendar from '@/components/AvailabilityCalendar'
+import DashboardCalendarClient from '@/components/DashboardCalendarClient'
 
 function formatDate(date: Date) {
     return new Date(date).toLocaleDateString('th-TH', {
@@ -31,7 +31,7 @@ export default async function DashboardPage() {
         <>
             <Header title="หน้าหลัก" />
             <main className="page-container">
-                <AvailabilityCalendar getAvailability={getMonthlyAvailability} />
+                <DashboardCalendarClient getAvailability={getMonthlyAvailability} />
 
                 <section style={{ marginBottom: '1.5rem' }}>
                     <h2 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#374151' }}>
